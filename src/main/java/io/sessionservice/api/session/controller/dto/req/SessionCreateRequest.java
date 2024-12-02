@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.controller.dto.req;
 
-import com.toyproject.hyeonworld.api.session.application.dto.in.CreateLoginSessionCommand;
+import io.userservice.api.session.application.dto.in.CreateLoginSessionCommand;
 
 /**
  * @author : hyeonwoody@gmail.com

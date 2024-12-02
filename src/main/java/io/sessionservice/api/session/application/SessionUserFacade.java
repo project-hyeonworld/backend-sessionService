@@ -1,17 +1,17 @@
 package io.sessionservice.api.session.application;
 
 import com.toyproject.hyeonworld.api.party.domain.PartyService;
-import com.toyproject.hyeonworld.api.session.application.dto.in.CreateLoginSessionCommand;
-import com.toyproject.hyeonworld.api.session.application.dto.in.SessionCommand;
-import com.toyproject.hyeonworld.api.session.application.dto.out.PartyUserIdDto;
-import com.toyproject.hyeonworld.api.session.event.GameInSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.GameOutSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.LogInSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.LogOutSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.SessionEventPublisher;
+import io.userservice.api.session.application.dto.in.CreateLoginSessionCommand;
+import io.userservice.api.session.application.dto.in.SessionCommand;
+import io.userservice.api.session.application.dto.out.PartyUserIdDto;
+import io.userservice.api.session.event.GameInSessionEvent;
+import io.userservice.api.session.event.GameOutSessionEvent;
+import io.userservice.api.session.event.LogInSessionEvent;
+import io.userservice.api.session.event.LogOutSessionEvent;
+import io.userservice.api.session.event.SessionEventPublisher;
 import com.toyproject.hyeonworld.api.user.domain.UserService;
 import com.toyproject.hyeonworld.api.user.domain.dto.out.UserInfo;
-import com.toyproject.hyeonworld.common.annotation.Facade;
+import io.userservice.common.annotation.Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -2,11 +2,11 @@ package io.sessionservice.api.session.interfaces;
 
 import static org.springframework.transaction.event.TransactionPhase.BEFORE_COMMIT;
 
-import com.toyproject.hyeonworld.api.session.event.GameInSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.GameOutSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.LogInSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.LogOutSessionEvent;
-import com.toyproject.hyeonworld.api.session.event.SessionEvent;
+import io.userservice.api.session.event.GameInSessionEvent;
+import io.userservice.api.session.event.GameOutSessionEvent;
+import io.userservice.api.session.event.LogInSessionEvent;
+import io.userservice.api.session.event.LogOutSessionEvent;
+import io.userservice.api.session.event.SessionEvent;
 import com.toyproject.hyeonworld.api.sse.application.SsePartyFacade;
 import com.toyproject.hyeonworld.api.user.domain.UserService;
 import java.util.Map;

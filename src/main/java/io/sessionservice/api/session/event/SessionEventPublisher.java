@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.event;
 
-import com.toyproject.hyeonworld.common.event.EventPublisher;
+import io.userservice.common.event.EventPublisher;
 
 /**
  * @author : hyeonwoody@gmail.com

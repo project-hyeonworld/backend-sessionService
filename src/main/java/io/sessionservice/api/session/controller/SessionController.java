@@ -1,10 +1,10 @@
 package io.sessionservice.api.session.controller;
 
-import com.toyproject.hyeonworld.api.session.application.SessionUserFacade;
-import com.toyproject.hyeonworld.api.session.controller.dto.req.SessionCreateRequest;
-import com.toyproject.hyeonworld.api.session.controller.dto.req.SessionDeleteRequest;
-import com.toyproject.hyeonworld.api.session.controller.dto.req.SessionGameRequest;
-import com.toyproject.hyeonworld.api.session.controller.dto.res.SessionBasicResponse;
+import io.userservice.api.session.application.SessionUserFacade;
+import io.userservice.api.session.controller.dto.req.SessionCreateRequest;
+import io.userservice.api.session.controller.dto.req.SessionDeleteRequest;
+import io.userservice.api.session.controller.dto.req.SessionGameRequest;
+import io.userservice.api.session.controller.dto.res.SessionBasicResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

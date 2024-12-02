@@ -1,7 +1,7 @@
 package io.sessionservice.api.session.interfaces;
 
-import com.toyproject.hyeonworld.api.session.event.SessionEvent;
-import com.toyproject.hyeonworld.common.event.EventListener;
+import io.userservice.api.session.event.SessionEvent;
+import io.userservice.common.event.EventListener;
 
 /**
  * @author : hyeonwoody@gmail.com
