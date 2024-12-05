@@ -25,12 +25,11 @@ public class SessionFacade {
 
   public PartyUserIdDto createLoginSession(CreateLoginSessionCommand command) {
     UserRelationTypeInfo userInfo = userClient.getUserRelationTypeByName(command.userName());
-    Long partyId = partyClient.getByRelationType(userInfo.relationType());
-    if (partyId == null) {
-      return PartyUserIdDto.from(null, userInfo.id());
+    Long availablePartyId = partyClient.getByRelationType(userInfo.relationType());
+    if (availablePartyId != null) {
+      eventPublisher.execute(LoginEventImpl.from(availablePartyId, userInfo.id(), command.userName()));
     }
-    eventPublisher.execute(LoginEventImpl.from(partyId, userInfo.id(), command.userName()));
-    return PartyUserIdDto.from(partyId, userInfo.id());
+    return PartyUserIdDto.from(availablePartyId, userInfo.id());
   }
 
   public long deleteLoginSession(SessionCommand command) {
