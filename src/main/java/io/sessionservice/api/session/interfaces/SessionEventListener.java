@@ -1,15 +1,30 @@
 package io.sessionservice.api.session.interfaces;
 
-import io.userservice.api.session.event.SessionEvent;
-import io.userservice.common.event.EventListener;
+import static org.springframework.transaction.event.TransactionPhase.BEFORE_COMMIT;
+
+import io.sessionservice.api.session.event.SessionEvent;
+import io.sessionservice.common.event.GenericEventHandler;
+import io.sessionservice.common.event.GenericEventListener;
+import java.util.List;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
  * @author : hyeonwoody@gmail.com
  * @since : 24. 9. 4.
  */
-public interface SessionEventListener extends EventListener<SessionEvent> {
-  void handleLoginSessionEvent(SessionEvent sessionEvent);
-  void handleGameInSessionEvent(SessionEvent sessionEvent);
-  void handleGameOutSessionEvent(SessionEvent sessionEvent);
-  void handleLogoutSessionEvent(SessionEvent sessionEvent);
+@Component
+public class SessionEventListener extends GenericEventListener<SessionEvent> {
+
+
+    public SessionEventListener(
+            List<GenericEventHandler<? extends SessionEvent, SessionEvent>> handlers) {
+        super(handlers);
+    }
+
+    @Override
+    @TransactionalEventListener(phase = BEFORE_COMMIT)
+    public void handleEvent(SessionEvent event) {
+        handlers.get(event.getClass()).handle(event);
+    }
 }
