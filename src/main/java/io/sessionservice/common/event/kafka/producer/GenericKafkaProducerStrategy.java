@@ -1,6 +1,5 @@
 package io.sessionservice.common.event.kafka.producer;
 
-import io.sessionservice.api.session.event.kafka.producer.authentication.AuthenticationEvent;
 import io.sessionservice.common.event.CustomEvent;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -9,7 +8,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.
  */
-public abstract class GenericKafkaProducerStrategy<E extends CustomEvent, K, V> implements KafkaProducerStrategy<E, K, V> {
+public abstract class GenericKafkaProducerStrategy<E extends CustomEvent, K, V> implements KafkaProducerStrategy {
 
     protected final String TOPIC;
     protected KafkaProducer<K, V> kafkaProducer;

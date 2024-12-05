@@ -1,7 +1,6 @@
 package io.sessionservice.common.event.kafka.producer;
 
 import io.sessionservice.common.event.CustomEvent;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,12 +13,13 @@ public class GenericKafkaProducerFactory<E extends CustomEvent> implements Kafka
 
     protected final Map<Class<? extends E>, GenericKafkaProducerStrategy<? extends E, ?, ?>> strategies;
 
-    public GenericKafkaProducerFactory(List<GenericKafkaProducerStrategy<? extends E, ?, ?>> kafkaConsumerStrategies) {
-        strategies = kafkaConsumerStrategies.stream()
+    public GenericKafkaProducerFactory(List<GenericKafkaProducerStrategy<? extends E, ?, ?>> kafkaProducerStrategies) {
+        strategies = kafkaProducerStrategies.stream()
                 .collect(Collectors.toMap(GenericKafkaProducerStrategy::getEventClass, strategy -> strategy));
     }
 
-    public GenericKafkaProducerStrategy<? extends E, ?, ?> getConsumer(Class<?> eventClass) {
+    public GenericKafkaProducerStrategy<? extends E, ?, ?> getProducer(Class<? extends CustomEvent> eventClass) {
         return strategies.get(eventClass);
     }
+
 }

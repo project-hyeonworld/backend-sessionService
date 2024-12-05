@@ -8,5 +8,5 @@ import io.sessionservice.common.event.CustomEvent;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 2.
  */
-public interface KafkaProducerStrategy<E extends CustomEvent, K, V> {
+public interface KafkaProducerStrategy extends CustomEvent {
 }

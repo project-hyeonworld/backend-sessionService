@@ -1,7 +1,6 @@
 package io.sessionservice.common.event.kafka.producer;
 
 import io.sessionservice.common.event.CustomEvent;
-import org.apache.kafka.clients.producer.KafkaProducer;
 
 /**
  * @author : hyeonwoody@gmail.com
@@ -9,9 +8,9 @@ import org.apache.kafka.clients.producer.KafkaProducer;
  */
 public abstract class GenericKafkaSender<E extends CustomEvent> implements KafkaSender<E> {
 
-    protected GenericKafkaProducerManager<E> manager;
+    protected GenericKafkaProducerManager<? extends E> manager;
 
-    public GenericKafkaSender(GenericKafkaProducerManager<E> kafkaProducerManager) {
+    public GenericKafkaSender(GenericKafkaProducerManager<? extends E> kafkaProducerManager) {
         manager = kafkaProducerManager;
     }
 

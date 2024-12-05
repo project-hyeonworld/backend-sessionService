@@ -5,5 +5,5 @@ package io.sessionservice.common.event;
  * @since : 24. 9. 4.
  */
 public interface CustomEvent {
-    Class<? extends CustomEvent> getEventType();
+    Class<? extends CustomEvent> getEventClass();
 }

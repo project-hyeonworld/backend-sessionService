@@ -10,11 +10,12 @@ public class GenericKafkaProducerManager<E extends CustomEvent> implements Kafka
 
     protected GenericKafkaProducerFactory<E> factory;
 
-    public GenericKafkaProducerManager(GenericKafkaProducerFactory<E> genericKafkaConsumerFactory) {
-        factory = genericKafkaConsumerFactory;
+    public GenericKafkaProducerManager(GenericKafkaProducerFactory<E> genericKafkaProducerFactory) {
+        factory = genericKafkaProducerFactory;
     }
 
-    public GenericKafkaProducerStrategy<? extends E, ?, ?> getProducer(Class<?> event) {
-        return factory.getConsumer(event);
+    public GenericKafkaProducerStrategy<? extends E, ?, ?> getProducer(Class<? extends CustomEvent> event) {
+        return factory.getProducer(event);
     }
+
 }
