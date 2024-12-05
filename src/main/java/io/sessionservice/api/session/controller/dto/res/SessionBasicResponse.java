@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.controller.dto.res;
 
-import io.userservice.api.session.application.dto.out.PartyUserIdDto;
+import io.sessionservice.api.session.application.dto.out.PartyUserIdDto;
 
 /**
  * @author : hyeonwoody@gmail.com
