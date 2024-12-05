@@ -19,7 +19,7 @@ public class GenericKafkaProducerFactory<E extends CustomEvent> implements Kafka
                 .collect(Collectors.toMap(GenericKafkaProducerStrategy::getEventClass, strategy -> strategy));
     }
 
-    public GenericKafkaProducerStrategy<? extends E, ?, ?> getConsumer(Class<? extends E> eventClass) {
+    public GenericKafkaProducerStrategy<? extends E, ?, ?> getConsumer(Class<?> eventClass) {
         return strategies.get(eventClass);
     }
 }

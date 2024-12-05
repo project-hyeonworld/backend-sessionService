@@ -19,7 +19,7 @@ public class LoginKafkaSender extends GenericKafkaSender<LoginEvent> {
 
     @Override
     public void execute(LoginEvent event) {
-        GenericKafkaProducerStrategy producer = manager.getProducer(event.getClass());
+        GenericKafkaProducerStrategy producer = manager.getProducer(event.getEventType());
         producer.send(event);
     }
 }

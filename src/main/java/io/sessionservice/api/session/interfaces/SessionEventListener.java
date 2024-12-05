@@ -25,6 +25,6 @@ public class SessionEventListener extends GenericEventListener<SessionEvent> {
     @Override
     @TransactionalEventListener(phase = BEFORE_COMMIT)
     public void handleEvent(SessionEvent event) {
-        handlers.get(event.getClass()).handle(event);
+        handlers.get(event.getEventType()).handle(event);
     }
 }
