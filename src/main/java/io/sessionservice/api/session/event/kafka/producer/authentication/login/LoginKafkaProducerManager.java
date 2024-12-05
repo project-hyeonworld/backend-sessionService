@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginKafkaProducerManager extends GenericKafkaProducerManager<LoginEvent> {
 
-    public LoginKafkaProducerManager(
-            GenericKafkaProducerFactory<LoginEvent> genericKafkaConsumerFactory) {
-        super(genericKafkaConsumerFactory);
+    public LoginKafkaProducerManager(GenericKafkaProducerFactory<LoginEvent> factory) {
+        super(factory);
     }
 }

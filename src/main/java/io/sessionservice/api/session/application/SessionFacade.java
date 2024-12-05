@@ -27,7 +27,7 @@ public class SessionFacade {
     UserRelationTypeInfo userInfo = userClient.getUserRelationTypeByName(command.userName());
     Long availablePartyId = partyClient.getByRelationType(userInfo.relationType());
     if (availablePartyId != null) {
-      eventPublisher.execute(LoginEventImpl.from(availablePartyId, userInfo.id(), command.userName()));
+      eventPublisher.execute(LoginEventImpl.from(userInfo.id(), availablePartyId, command.userName()));
     }
     return PartyUserIdDto.from(availablePartyId, userInfo.id());
   }

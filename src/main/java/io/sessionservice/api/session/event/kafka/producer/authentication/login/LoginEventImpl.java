@@ -13,11 +13,11 @@ public class LoginEventImpl implements LoginEvent {
     private final String userName;
 
     @Override
-    public Class<? extends SessionEvent> getEventType() {
+    public Class<? extends SessionEvent> getEventClass() {
         return LoginEvent.class;
     }
 
-    private LoginEventImpl(long userId, long partyId, String userName) {
+    public LoginEventImpl(long userId, long partyId, String userName) {
         this.userId = userId;
         this.partyId = partyId;
         this.userName = userName;
@@ -26,6 +26,10 @@ public class LoginEventImpl implements LoginEvent {
     @Override
     public long userId() {
         return userId;
+    }
+
+    public long partyId() {
+        return partyId;
     }
 
     public static LoginEventImpl from(long userId, long partyId, String userName) {
