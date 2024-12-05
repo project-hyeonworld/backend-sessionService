@@ -1,10 +1,18 @@
 package io.sessionservice.api.session.event;
 
-import io.userservice.common.event.EventPublisher;
+import io.sessionservice.common.event.GenericEventPublisher;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
 
 /**
  * @author : hyeonwoody@gmail.com
  * @since : 24. 9. 4.
  */
-public interface SessionEventPublisher extends EventPublisher<SessionEvent> {
+@Component
+public class SessionEventPublisher extends GenericEventPublisher<SessionEvent> {
+
+  protected SessionEventPublisher(ApplicationEventPublisher publisher) {
+    super(publisher);
+  }
+
 }
