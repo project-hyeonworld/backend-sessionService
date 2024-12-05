@@ -2,7 +2,7 @@ package io.sessionservice.api.session.client.party;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author : hyeonwoody@gmail.com
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "party-service", url = "${my.feign-client.party-service.address}"+":${my.feign-client.party-service.port}"+"${my.feign-client.party-service.end-point}")
 public interface PartyClient {
 
-    @GetMapping("/")
-    Long getByRelationType(@PathVariable("relation-type") int relationType);
+    @GetMapping
+    Long getByRelationType(@RequestParam("relation-type") int relationType);
 
 }

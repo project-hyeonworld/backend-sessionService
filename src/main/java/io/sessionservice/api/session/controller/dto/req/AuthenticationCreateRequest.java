@@ -6,11 +6,11 @@ import io.sessionservice.api.session.application.dto.in.CreateLoginSessionComman
  * @author : hyeonwoody@gmail.com
  * @since : 24. 11. 4.
  */
-public record SessionCreateRequest (
-    String loginName
+public record AuthenticationCreateRequest(
+    String userName
 ) implements SessionRequest
 {
   public CreateLoginSessionCommand toCommand() {
-    return new CreateLoginSessionCommand(loginName);
+    return new CreateLoginSessionCommand(userName);
   }
 }

@@ -6,9 +6,7 @@ import io.sessionservice.api.session.application.dto.in.SessionCommand;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 11. 4.
  */
-public record SessionDeleteRequest(
-    long userId
-) implements SessionRequest {
+public record InGameRequest(long userId) implements SessionRequest {
   public SessionCommand toCommand() {
     return new SessionCommand(userId);
   }
