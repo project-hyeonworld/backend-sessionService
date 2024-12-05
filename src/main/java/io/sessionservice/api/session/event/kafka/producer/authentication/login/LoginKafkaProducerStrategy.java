@@ -1,6 +1,7 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login;
 
 
+import io.sessionservice.common.event.CustomEvent;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
 import io.sessionservice.common.mapper.ObjectSerializer;
 import java.util.Properties;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Component;
  * @since : 24. 12. 5.
  */
 @Component
-public class LoginKafkaProducerStrategy extends GenericKafkaProducerStrategy<LoginEvent, String, LoginEventImpl> {
+public class LoginKafkaProducerStrategy extends
+        GenericKafkaProducerStrategy<LoginEvent, String, LoginEventRecord> implements
+        LoginEvent {
 
     protected LoginKafkaProducerStrategy(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in}")String topic) {
         super(topic);
@@ -29,12 +32,19 @@ public class LoginKafkaProducerStrategy extends GenericKafkaProducerStrategy<Log
     }
 
     @Override
-    public Class<LoginEvent> getEventClass() {
+    public Class<LoginEvent> getEventType() {
         return LoginEvent.class;
     }
 
     @Override
-    protected ProducerRecord<String, LoginEventImpl> convertToRecord(LoginEvent event) {
-        return new ProducerRecord<>(TOPIC, (LoginEventImpl) event);
+    protected ProducerRecord<String, LoginEventRecord> convertToRecord(LoginEvent event) {
+        LoginEventImpl impl = (LoginEventImpl) event;
+        return new ProducerRecord<>(TOPIC, impl.toRecord());
+    }
+
+
+    @Override
+    public long userId() {
+        return 0;
     }
 }

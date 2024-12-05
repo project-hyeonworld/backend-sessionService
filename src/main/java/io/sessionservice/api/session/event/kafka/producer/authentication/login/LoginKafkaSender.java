@@ -22,4 +22,5 @@ public class LoginKafkaSender extends GenericKafkaSender<LoginEvent> {
         GenericKafkaProducerStrategy producer = manager.getProducer(event.getEventType());
         producer.send(event);
     }
+
 }
