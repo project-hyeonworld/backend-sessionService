@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
  */
 public class GenericKafkaProducerFactory<E extends CustomEvent> implements KafkaProducerFactory<E> {
 
-    protected final Map<Class<? extends E>, GenericKafkaProducerStrategy<? extends E, ?, ?>> strategies;
+    protected final Map<Class<? extends E>, GenericKafkaProducer<? extends E, ?, ?>> strategies;
 
-    public GenericKafkaProducerFactory(List<GenericKafkaProducerStrategy<? extends E, ?, ?>> kafkaProducerStrategies) {
+    public GenericKafkaProducerFactory(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
         strategies = kafkaProducerStrategies.stream()
-                .collect(Collectors.toMap(GenericKafkaProducerStrategy::getEventClass, strategy -> strategy));
+                .collect(Collectors.toMap(GenericKafkaProducer::getEventClass, strategy -> strategy));
     }
 
-    public GenericKafkaProducerStrategy<? extends E, ?, ?> getProducer(Class<? extends CustomEvent> eventClass) {
+    public GenericKafkaProducer<? extends E, ?, ?> getProducer(Class<? extends CustomEvent> eventClass) {
         return strategies.get(eventClass);
     }
 

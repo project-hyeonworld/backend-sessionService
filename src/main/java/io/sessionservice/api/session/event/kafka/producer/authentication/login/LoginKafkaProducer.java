@@ -32,6 +32,16 @@ public class LoginKafkaProducer extends
     }
 
     @Override
+    public void send(LoginEvent event) {
+
+    }
+
+    @Override
+    protected ProducerRecord<Long, Long> produce(LoginEvent event) {
+        return null;
+    }
+
+    @Override
     protected ProducerRecord<Long, Long> convertToRecord(LoginEvent event) {
         LoginEventImpl impl = (LoginEventImpl) event;
         return new ProducerRecord<>(TOPIC, event.userId());

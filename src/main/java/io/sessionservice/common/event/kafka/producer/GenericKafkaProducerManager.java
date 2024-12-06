@@ -1,21 +1,17 @@
 package io.sessionservice.common.event.kafka.producer;
 
 import io.sessionservice.common.event.CustomEvent;
-
 /**
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.
  */
-public class GenericKafkaProducerManager<E extends CustomEvent> implements KafkaProducerManager<E> {
+public abstract class GenericKafkaProducerManager<E extends CustomEvent> implements KafkaProducerManager<E> {
 
-    protected GenericKafkaProducerFactory<E> factory;
+    protected GenericKafkaProducers<E> strategies;
 
-    public GenericKafkaProducerManager(GenericKafkaProducerFactory<E> genericKafkaProducerFactory) {
-        factory = genericKafkaProducerFactory;
+    public GenericKafkaProducerManager(GenericKafkaProducers<E> genericKafkaProducers) {
+        strategies = genericKafkaProducers;
     }
 
-    public GenericKafkaProducerStrategy<? extends E, ?, ?> getProducer(Class<? extends CustomEvent> event) {
-        return factory.getProducer(event);
-    }
-
+    public abstract void send(E event);
 }
