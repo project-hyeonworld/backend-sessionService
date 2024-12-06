@@ -8,24 +8,20 @@ import org.apache.kafka.clients.producer.ProducerRecord;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.
  */
-public abstract class GenericKafkaProducerStrategy<E extends CustomEvent, K, V> implements KafkaProducerStrategy {
+public abstract class GenericKafkaProducer<E extends CustomEvent, K, V> implements KafkaProducerStrategy {
 
     protected final String TOPIC;
     protected KafkaProducer<K, V> kafkaProducer;
 
-    protected GenericKafkaProducerStrategy(String topic) {
+    protected GenericKafkaProducer(String topic) {
         TOPIC = topic;
     }
 
     public abstract Class<E> getEventClass();
 
-    public void send(E event) {
-        kafkaProducer.send(produce(event));
-    }
+    public abstract void send(E event);
 
-    protected ProducerRecord<K, V> produce(E event) {
-        return convertToRecord(event);
-    }
+    protected abstract ProducerRecord<K, V> produce(E event);
 
     protected abstract ProducerRecord<K,V> convertToRecord(E event);
 }

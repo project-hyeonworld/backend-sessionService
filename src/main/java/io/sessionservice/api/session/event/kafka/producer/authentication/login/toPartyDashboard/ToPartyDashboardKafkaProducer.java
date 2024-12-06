@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login.toPartyDashboard;
 
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import java.util.Properties;
 import java.util.UUID;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
  * @since : 24. 12. 5.
  */
 @Component
-public class ToPartyDashboardKafkaProducerStrategy extends GenericKafkaProducerStrategy<ToPartyDashboardEvent, String, Long> {
+public class ToPartyDashboardKafkaProducer extends GenericKafkaProducer<ToPartyDashboardEvent, String, Long> {
 
-    protected ToPartyDashboardKafkaProducerStrategy(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in.to-partyDashboard}")String topic) {
+    protected ToPartyDashboardKafkaProducer(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in.to-partyDashboard}")String topic) {
         super(topic);
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerUrl);
@@ -30,6 +30,16 @@ public class ToPartyDashboardKafkaProducerStrategy extends GenericKafkaProducerS
     @Override
     public Class<ToPartyDashboardEvent> getEventClass() {
         return ToPartyDashboardEvent.class;
+    }
+
+    @Override
+    public void send(ToPartyDashboardEvent event) {
+        kafkaProducer.send(produce(event));
+    }
+
+    @Override
+    protected ProducerRecord<String, Long> produce(ToPartyDashboardEvent event) {
+        return convertToRecord(event);
     }
 
     @Override

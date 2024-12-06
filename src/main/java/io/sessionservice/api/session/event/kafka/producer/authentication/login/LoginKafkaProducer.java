@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login;
 
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Value;
  * @since : 24. 12. 5.
  */
 @Deprecated
-public class LoginKafkaProducerStrategy extends
-        GenericKafkaProducerStrategy<LoginEvent, Long, Long> implements
+public class LoginKafkaProducer extends
+        GenericKafkaProducer<LoginEvent, Long, Long> implements
         LoginEvent {
 
-    protected LoginKafkaProducerStrategy(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in}")String topic) {
+    protected LoginKafkaProducer(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in}")String topic) {
         super(topic);
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerUrl);

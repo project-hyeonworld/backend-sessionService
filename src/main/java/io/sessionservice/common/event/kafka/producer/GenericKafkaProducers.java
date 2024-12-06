@@ -9,12 +9,12 @@ import java.util.concurrent.Executors;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 6.
  */
-public abstract class GenericKafkaProducerStrategies<E extends CustomEvent> implements KafkaProducerStrategy {
+public abstract class GenericKafkaProducers<E extends CustomEvent> implements KafkaProducerStrategy {
 
-    protected List<GenericKafkaProducerStrategy<? extends E, ?, ?>> strategies;
+    protected List<GenericKafkaProducer<? extends E, ?, ?>> strategies;
     protected final Executor executor;
 
-    public GenericKafkaProducerStrategies(List<GenericKafkaProducerStrategy<? extends E, ?, ?>> kafkaProducerStrategies) {
+    public GenericKafkaProducers(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
         strategies = kafkaProducerStrategies;
         executor = Executors.newFixedThreadPool(strategies.size());
     }
@@ -22,4 +22,6 @@ public abstract class GenericKafkaProducerStrategies<E extends CustomEvent> impl
     public int size() {
         return strategies.size();
     }
+
+    public abstract void send(E event);
 }

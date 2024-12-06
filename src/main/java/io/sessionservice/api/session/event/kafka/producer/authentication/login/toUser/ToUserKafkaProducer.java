@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login.toUser;
 
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import java.util.Properties;
 import java.util.UUID;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
  * @since : 24. 12. 5.
  */
 @Component
-public class ToUserKafkaProducerStrategy extends GenericKafkaProducerStrategy<ToUserEvent, String, Long> {
+public class ToUserKafkaProducer extends GenericKafkaProducer<ToUserEvent, String, Long> {
 
-    protected ToUserKafkaProducerStrategy(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in.to-user}")String topic) {
+    protected ToUserKafkaProducer(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in.to-user}")String topic) {
         super(topic);
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerUrl);
@@ -30,6 +30,16 @@ public class ToUserKafkaProducerStrategy extends GenericKafkaProducerStrategy<To
     @Override
     public Class<ToUserEvent> getEventClass() {
         return ToUserEvent.class;
+    }
+
+    @Override
+    public void send(ToUserEvent event) {
+        kafkaProducer.send(produce(event));
+    }
+
+    @Override
+    protected ProducerRecord<String, Long> produce(ToUserEvent event) {
+        return convertToRecord(event);
     }
 
     @Override
