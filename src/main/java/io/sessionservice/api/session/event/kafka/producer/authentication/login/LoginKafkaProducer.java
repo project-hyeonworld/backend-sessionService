@@ -14,8 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
  */
 @Deprecated
 public class LoginKafkaProducer extends
-        GenericKafkaProducer<LoginEvent, Long, Long> implements
-        LoginEvent {
+        GenericKafkaProducer<LoginEvent, Long, Long>  {
 
     protected LoginKafkaProducer(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in}")String topic) {
         super(topic);
@@ -43,12 +42,6 @@ public class LoginKafkaProducer extends
 
     @Override
     protected ProducerRecord<Long, Long> convertToRecord(LoginEvent event) {
-        LoginEventImpl impl = (LoginEventImpl) event;
         return new ProducerRecord<>(TOPIC, event.userId());
-    }
-
-    @Override
-    public long userId() {
-        return 0;
     }
 }

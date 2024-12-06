@@ -11,16 +11,16 @@ import java.util.concurrent.Executors;
  */
 public abstract class GenericKafkaProducers<E extends CustomEvent> implements KafkaProducerStrategy {
 
-    protected List<GenericKafkaProducer<? extends E, ?, ?>> strategies;
+    protected List<GenericKafkaProducer<? extends E, ?, ?>> producers;
     protected final Executor executor;
 
     public GenericKafkaProducers(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
-        strategies = kafkaProducerStrategies;
-        executor = Executors.newFixedThreadPool(strategies.size());
+        producers = kafkaProducerStrategies;
+        executor = Executors.newFixedThreadPool(producers.size());
     }
 
     public int size() {
-        return strategies.size();
+        return producers.size();
     }
 
     public abstract void send(E event);

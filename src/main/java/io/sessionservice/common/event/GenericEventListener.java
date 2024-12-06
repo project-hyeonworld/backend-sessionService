@@ -17,8 +17,5 @@ public abstract class GenericEventListener<E extends CustomEvent> implements Eve
                 .collect(Collectors.toMap(GenericEventHandler::getEventType, handler -> handler));
     }
 
-    @Override
-    public void handleEvent(E event) {
-        handlers.get(event.getClass()).handle(event);
-    }
+    public abstract void handleEvent(E event);
 }

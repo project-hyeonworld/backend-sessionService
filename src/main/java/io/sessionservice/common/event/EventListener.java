@@ -5,5 +5,4 @@ package io.sessionservice.common.event;
  * @since : 24. 9. 4.
  */
 public interface EventListener<E extends CustomEvent> {
-    void handleEvent(E event);
 }

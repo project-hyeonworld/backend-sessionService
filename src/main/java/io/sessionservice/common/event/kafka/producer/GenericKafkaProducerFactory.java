@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.
  */
-public class GenericKafkaProducerFactory<E extends CustomEvent> implements KafkaProducerFactory<E> {
+public class GenericKafkaProducerFactory<E extends CustomEvent> implements KafkaProducerFactory {
 
     protected final Map<Class<? extends E>, GenericKafkaProducer<? extends E, ?, ?>> strategies;
 
