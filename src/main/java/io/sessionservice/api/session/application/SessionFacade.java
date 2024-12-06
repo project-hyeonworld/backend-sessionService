@@ -6,9 +6,11 @@ import io.sessionservice.api.session.application.dto.out.PartyUserIdDto;
 import io.sessionservice.api.session.client.party.PartyClient;
 import io.sessionservice.api.session.client.user.UserClient;
 import io.sessionservice.api.session.client.user.UserRelationTypeInfo;
+import io.sessionservice.api.session.event.SessionEvent;
 import io.sessionservice.api.session.event.SessionEventPublisher;
 import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginEventImpl;
 import io.sessionservice.common.annotation.Facade;
+import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -27,7 +29,9 @@ public class SessionFacade {
     UserRelationTypeInfo userInfo = userClient.getUserRelationTypeByName(command.userName());
     Long availablePartyId = partyClient.getByRelationType(userInfo.relationType());
     if (availablePartyId != null) {
-      eventPublisher.execute(LoginEventImpl.from(userInfo.id(), availablePartyId, command.userName()));
+      CompletableFuture.runAsync(() ->
+              eventPublisher.execute(LoginEventImpl.from(userInfo.id(), availablePartyId, command.userName()))
+      );
     }
     return PartyUserIdDto.from(availablePartyId, userInfo.id());
   }
@@ -51,5 +55,9 @@ public class SessionFacade {
     //UserInfo userInfo = userService.confirmExitGame(command.userId());
     //eventPublisher.execute(GameOutSessionEvent.from(userInfo.getRelationType().ordinal(), userInfo.getId(), userInfo.getName()));
     return command.userId();
+  }
+
+  private void publishEvent(SessionEvent event) {
+
   }
 }
