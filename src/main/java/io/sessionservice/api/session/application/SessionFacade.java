@@ -26,7 +26,7 @@ public class SessionFacade {
   private final SessionEventPublisher eventPublisher;
 
   public PartyUserIdDto createLoginSession(CreateLoginSessionCommand command) {
-    UserRelationTypeInfo userInfo = userClient.getUserRelationTypeByName(command.userName());
+    UserRelationTypeInfo userInfo = userClient.getUserLoginByName(command.userName());
     Long availablePartyId = partyClient.getByRelationType(userInfo.relationType());
     if (availablePartyId != null) {
       CompletableFuture.runAsync(() ->

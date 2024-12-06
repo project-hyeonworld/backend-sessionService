@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "user-service", url = "${my.feign-client.user-service.address}"+":${my.feign-client.user-service.port}"+"${my.feign-client.user-service.end-point}")
 public interface UserClient {
 
+    @GetMapping("/login")
+    UserRelationTypeInfo getUserLoginByName(@RequestParam(name = "name") String userName);
+
     @GetMapping("/relation-type")
     UserRelationTypeInfo getUserRelationTypeByName(@RequestParam(name = "name") String userName);
 
