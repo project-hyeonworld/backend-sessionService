@@ -14,7 +14,7 @@ public abstract class GenericKafkaProducers<E extends CustomEvent> implements Ka
     protected List<GenericKafkaProducer<? extends E, ?, ?>> producers;
     protected final Executor executor;
 
-    public GenericKafkaProducers(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
+    protected GenericKafkaProducers(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
         producers = kafkaProducerStrategies;
         executor = Executors.newFixedThreadPool(producers.size());
     }

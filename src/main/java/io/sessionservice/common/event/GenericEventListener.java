@@ -12,7 +12,7 @@ public abstract class GenericEventListener<E extends CustomEvent> implements Eve
 
     protected final Map<Class<? extends E>, GenericEventHandler<? extends E, E>> handlers;
 
-    public GenericEventListener(List<GenericEventHandler<? extends E, E>> eventHandlers) {
+    protected GenericEventListener(List<GenericEventHandler<? extends E, E>> eventHandlers) {
         handlers = eventHandlers.stream()
                 .collect(Collectors.toMap(GenericEventHandler::getEventType, handler -> handler));
     }

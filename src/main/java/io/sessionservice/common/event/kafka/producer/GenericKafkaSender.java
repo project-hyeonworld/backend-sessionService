@@ -10,7 +10,7 @@ public abstract class GenericKafkaSender<E extends CustomEvent> implements Kafka
 
     protected GenericKafkaProducerManager<E> manager;
 
-    public GenericKafkaSender(GenericKafkaProducerManager<E> kafkaProducerManager) {
+    protected GenericKafkaSender(GenericKafkaProducerManager<E> kafkaProducerManager) {
         manager = kafkaProducerManager;
     }
 

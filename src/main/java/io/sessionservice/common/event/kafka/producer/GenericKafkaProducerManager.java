@@ -9,7 +9,7 @@ public abstract class GenericKafkaProducerManager<E extends CustomEvent> impleme
 
     protected GenericKafkaProducers<E> producers;
 
-    public GenericKafkaProducerManager(GenericKafkaProducers<E> genericKafkaProducers) {
+    protected GenericKafkaProducerManager(GenericKafkaProducers<E> genericKafkaProducers) {
         producers = genericKafkaProducers;
     }
 

@@ -13,7 +13,7 @@ public class GenericKafkaProducerFactory<E extends CustomEvent> implements Kafka
 
     protected final Map<Class<? extends E>, GenericKafkaProducer<? extends E, ?, ?>> strategies;
 
-    public GenericKafkaProducerFactory(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
+    protected GenericKafkaProducerFactory(List<GenericKafkaProducer<? extends E, ?, ?>> kafkaProducerStrategies) {
         strategies = kafkaProducerStrategies.stream()
                 .collect(Collectors.toMap(GenericKafkaProducer::getEventClass, strategy -> strategy));
     }
