@@ -2,6 +2,7 @@ package io.sessionservice.api.session.client.user;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -12,12 +13,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "user-service", url = "${my.feign-client.user-service.address}"+":${my.feign-client.user-service.port}"+"${my.feign-client.user-service.end-point}")
 public interface UserClient {
 
-    @GetMapping("/login")
-    UserRelationTypeInfo getUserLoginByName(@RequestParam(name = "name") String userName);
+    @GetMapping("/authentication")
+    UserRelationTypeInfo getAuthenticationByName(@RequestParam(name = "name") String userName);
+
+    @PatchMapping("/{userId}/authentication/login")
+    void patchLogin(@PathVariable(name ="userId") long userId);
+
+    @PatchMapping("/{userId}/authentication/logout")
+    void patchLogout(@PathVariable(name ="userId") long userId);
 
     @GetMapping("/relation-type")
     UserRelationTypeInfo getUserRelationTypeByName(@RequestParam(name = "name") String userName);
 
     @GetMapping("/")
     boolean validateById(@PathVariable("id") long userId);
+
+
 }

@@ -1,5 +1,6 @@
 package io.sessionservice.api.session.interfaces.handler.authentication;
 
+import io.sessionservice.api.session.client.user.UserClient;
 import io.sessionservice.api.session.event.SessionEvent;
 import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginKafkaSender;
 import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginEvent;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class LoginSessionHandler extends GenericEventHandler<LoginEvent, SessionEvent> {
 
     private final LoginKafkaSender kafkaSender;
+    private final UserClient userClient;
 
     @Override
     public Class<LoginEvent> getEventType() {
@@ -25,5 +27,6 @@ public class LoginSessionHandler extends GenericEventHandler<LoginEvent, Session
     @Override
     public void handle(SessionEvent event) {
         kafkaSender.execute((LoginEvent)event);
+        userClient.patchLogin(event.userId());
     }
 }

@@ -26,12 +26,10 @@ public class SessionFacade {
   private final SessionEventPublisher eventPublisher;
 
   public PartyUserIdDto createLoginSession(CreateLoginSessionCommand command) {
-    UserRelationTypeInfo userInfo = userClient.getUserLoginByName(command.userName());
+    UserRelationTypeInfo userInfo = userClient.getAuthenticationByName(command.userName());
     Long availablePartyId = partyClient.getByRelationType(userInfo.relationType());
     if (availablePartyId != null) {
-      CompletableFuture.runAsync(() ->
-              eventPublisher.execute(LoginEventImpl.from(userInfo.id(), availablePartyId, command.userName()))
-      );
+      CompletableFuture.runAsync(()->eventPublisher.execute(LoginEventImpl.from(userInfo.id(), availablePartyId, command.userName())));
     }
     return PartyUserIdDto.from(availablePartyId, userInfo.id());
   }
