@@ -1,7 +1,7 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication;
 
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerFactory;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerManager;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducers;
 
 /**
  * @author : hyeonwoody@gmail.com
@@ -11,7 +11,12 @@ import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerManager
 public class AuhorizationKafkaProducerManager extends GenericKafkaProducerManager<AuthenticationEvent> {
 
     public AuhorizationKafkaProducerManager(
-            GenericKafkaProducerFactory<AuthenticationEvent> genericKafkaConsumerFactory) {
-        super(genericKafkaConsumerFactory);
+            GenericKafkaProducers<AuthenticationEvent> genericKafkaProducers) {
+        super(genericKafkaProducers);
+    }
+
+    @Override
+    public void send(AuthenticationEvent event) {
+
     }
 }

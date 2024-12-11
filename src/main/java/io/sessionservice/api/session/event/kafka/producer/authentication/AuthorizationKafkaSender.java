@@ -1,7 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication;
 
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerManager;
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaSender;
 
 /**
@@ -14,11 +13,5 @@ public class AuthorizationKafkaSender extends GenericKafkaSender<AuthenticationE
     public AuthorizationKafkaSender(
             GenericKafkaProducerManager<AuthenticationEvent> kafkaProducerManager) {
         super(kafkaProducerManager);
-    }
-
-    @Override
-    public void execute(AuthenticationEvent event) {
-        GenericKafkaProducerStrategy producer = manager.getProducer(event.getClass());
-        producer.send(event);
     }
 }

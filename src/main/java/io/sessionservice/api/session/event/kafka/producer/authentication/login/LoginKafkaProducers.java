@@ -1,7 +1,7 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login;
 
-import io.sessionservice.api.session.event.kafka.producer.authentication.login.toPartyDashboard.ToPartyDashboardEvent;
-import io.sessionservice.api.session.event.kafka.producer.authentication.login.toUser.ToUserEvent;
+import io.sessionservice.api.session.event.kafka.producer.authentication.login.partyId.PartyIdMessage;
+import io.sessionservice.api.session.event.kafka.producer.authentication.login.userName.UserNameMessage;
 import io.sessionservice.common.event.CustomEvent;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducers;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
@@ -26,8 +26,8 @@ public class LoginKafkaProducers extends GenericKafkaProducers<LoginEvent> {
             List<GenericKafkaProducer<? extends LoginEvent, ?, ?>> genericKafkaProducerStrategies) {
         super(genericKafkaProducerStrategies);
         destination = new HashMap<>();
-        destination.put(ToPartyDashboardEvent.class, ToPartyDashboardEvent::from);
-        destination.put(ToUserEvent.class, ToUserEvent::from);
+        destination.put(PartyIdMessage.class, PartyIdMessage::from);
+        destination.put(UserNameMessage.class, UserNameMessage::from);
     }
 
     @Override

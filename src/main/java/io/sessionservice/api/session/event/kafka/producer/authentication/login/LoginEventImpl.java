@@ -1,7 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login;
 
 import io.sessionservice.common.event.CustomEvent;
-
 /**
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.

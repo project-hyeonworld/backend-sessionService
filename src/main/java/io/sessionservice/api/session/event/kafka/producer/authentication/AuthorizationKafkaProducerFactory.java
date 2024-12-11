@@ -1,7 +1,7 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication;
 
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerFactory;
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import java.util.List;
 
 /**
@@ -12,7 +12,7 @@ import java.util.List;
 public class AuthorizationKafkaProducerFactory extends GenericKafkaProducerFactory<AuthenticationEvent> {
 
     public AuthorizationKafkaProducerFactory(
-            List<GenericKafkaProducerStrategy<? extends AuthenticationEvent, ?, ?>> kafkaConsumerStrategies) {
+            List<GenericKafkaProducer<? extends AuthenticationEvent, ?, ?>> kafkaConsumerStrategies) {
         super(kafkaConsumerStrategies);
     }
 }
