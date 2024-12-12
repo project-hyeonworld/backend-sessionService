@@ -1,5 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login;
 
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerManager;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducers;
 import org.springframework.stereotype.Component;
@@ -11,13 +12,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginKafkaProducerManager extends GenericKafkaProducerManager<LoginEvent> {
 
+    private final GenericKafkaProducer<LoginEvent, ?, ?> producer;
+
     public LoginKafkaProducerManager(
-            GenericKafkaProducers<LoginEvent> genericKafkaProducerStrategies) {
-        super(genericKafkaProducerStrategies);
+            GenericKafkaProducer<LoginEvent, ?, ?> loginKafkaProducer) {
+        producer = loginKafkaProducer;
     }
 
     @Override
     public void send(LoginEvent event) {
-        producers.send(event);
+        producer.send(event);
     }
 }

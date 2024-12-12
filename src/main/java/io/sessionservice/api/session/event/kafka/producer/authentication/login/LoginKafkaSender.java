@@ -11,11 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginKafkaSender extends GenericKafkaSender<LoginEvent> {
 
-    private final LoginKafkaProducers strategies;
-
     public LoginKafkaSender(
-            GenericKafkaProducerManager<LoginEvent> kafkaProducerManager, LoginKafkaProducers kafkaProducerStrategies) {
+            GenericKafkaProducerManager<LoginEvent> kafkaProducerManager) {
         super(kafkaProducerManager);
-        strategies = kafkaProducerStrategies;
     }
 }

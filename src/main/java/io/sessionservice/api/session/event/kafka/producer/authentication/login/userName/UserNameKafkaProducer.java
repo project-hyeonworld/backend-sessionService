@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.
  */
-@Component
+@Deprecated
 public class UserNameKafkaProducer extends GenericKafkaProducer<UserNameMessage, Void, Long> {
 
     protected UserNameKafkaProducer(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in.user-name}")String topic) {

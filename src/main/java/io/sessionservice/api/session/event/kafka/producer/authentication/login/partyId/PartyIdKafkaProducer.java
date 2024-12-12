@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author : hyeonwoody@gmail.com
  * @since : 24. 12. 5.
  */
-@Component
+@Deprecated
 public class PartyIdKafkaProducer extends GenericKafkaProducer<PartyIdMessage, Long, Long> {
 
     protected PartyIdKafkaProducer(@Value("${spring.kafka.broker.url}") String brokerUrl, @Value("${spring.kafka.topic.session.authentication.log-in.party-id}")String topic) {

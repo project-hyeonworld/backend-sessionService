@@ -1,6 +1,6 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.login.partyId;
 
-import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginEventImpl;
+import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginMessage;
 import io.sessionservice.api.session.event.kafka.producer.message.PartyId;
 import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginEvent;
 import io.sessionservice.common.event.CustomEvent;
@@ -25,7 +25,7 @@ public class PartyIdMessage implements LoginEvent<PartyId> {
     }
 
     public static PartyIdMessage from(LoginEvent event) {
-        LoginEventImpl impl = (LoginEventImpl) event;
+        LoginMessage impl = (LoginMessage) event;
         return new PartyIdMessage(impl.partyId() , impl.userId());
     }
 
