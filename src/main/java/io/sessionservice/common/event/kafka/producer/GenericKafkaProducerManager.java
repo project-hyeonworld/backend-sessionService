@@ -7,11 +7,5 @@ import io.sessionservice.common.event.CustomEvent;
  */
 public abstract class GenericKafkaProducerManager<E extends CustomEvent> implements KafkaProducerManager<E> {
 
-    protected GenericKafkaProducers<E> producers;
-
-    protected GenericKafkaProducerManager(GenericKafkaProducers<E> genericKafkaProducers) {
-        producers = genericKafkaProducers;
-    }
-
     public abstract void send(E event);
 }
