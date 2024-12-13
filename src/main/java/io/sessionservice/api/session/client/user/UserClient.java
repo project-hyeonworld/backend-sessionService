@@ -28,5 +28,6 @@ public interface UserClient {
     @GetMapping("/")
     boolean validateById(@PathVariable("id") long userId);
 
-
+    @GetMapping("/{userId}")
+    String getUserNameById(@PathVariable(name ="userId") long userId);
 }

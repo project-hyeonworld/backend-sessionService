@@ -8,8 +8,8 @@ import io.sessionservice.api.session.client.user.UserClient;
 import io.sessionservice.api.session.client.user.UserRelationTypeInfo;
 import io.sessionservice.api.session.event.SessionEvent;
 import io.sessionservice.api.session.event.SessionEventPublisher;
-import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginEventImpl;
 import io.sessionservice.api.session.event.kafka.producer.authentication.login.event.LoginEvent;
+import io.sessionservice.api.session.event.kafka.producer.authentication.logout.event.LogoutEvent;
 import io.sessionservice.common.annotation.Facade;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +36,8 @@ public class SessionFacade {
   }
 
   public long deleteLoginSession(SessionCommand command) {
-    boolean existingUserId = userClient.validateById(command.userId());
-    //UserInfo userInfo = userService.confirmLogOut(command.userId());
-    //eventPublisher.execute(LogOutSessionEvent.from(userInfo.getRelationType().ordinal(), userInfo.getId(), userInfo.getName()));
+    int userRelationType = userClient.getRelationTypeById(command.userId());
+    CompletableFuture.runAsync(()->eventPublisher.execute(LogoutEvent.from(command.userId(), userRelationType)));
     return command.userId();
   }
 

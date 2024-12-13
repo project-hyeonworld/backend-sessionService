@@ -1,6 +1,7 @@
 package io.sessionservice.api.session.event.kafka.producer.authentication.logout;
 
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerFactory;
+import io.sessionservice.api.session.event.kafka.producer.authentication.logout.event.LogoutEvent;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerManager;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogoutKafkaProducerManager extends GenericKafkaProducerManager<LogoutEvent> {
 
-    public LogoutKafkaProducerManager(
-            GenericKafkaProducerFactory<LogoutEvent> genericKafkaConsumerFactory) {
-        super(genericKafkaConsumerFactory);
+    private final GenericKafkaProducer<LogoutEvent, ?, ?> producer;
+
+    public LogoutKafkaProducerManager(GenericKafkaProducer<LogoutEvent, ?, ?> consumer) {
+        this.producer = consumer;
+    }
+
+    @Override
+    public void send(LogoutEvent event) {
+        producer.send(event);
     }
 }
