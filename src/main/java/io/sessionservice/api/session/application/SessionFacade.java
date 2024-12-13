@@ -9,6 +9,7 @@ import io.sessionservice.api.session.client.user.UserRelationTypeInfo;
 import io.sessionservice.api.session.event.SessionEvent;
 import io.sessionservice.api.session.event.SessionEventPublisher;
 import io.sessionservice.api.session.event.kafka.producer.authentication.login.LoginEventImpl;
+import io.sessionservice.api.session.event.kafka.producer.authentication.login.event.LoginEvent;
 import io.sessionservice.common.annotation.Facade;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class SessionFacade {
     UserRelationTypeInfo userInfo = userClient.getAuthenticationByName(command.userName());
     Long availablePartyId = partyClient.getByRelationType(userInfo.relationType());
     if (availablePartyId != null) {
-      CompletableFuture.runAsync(()->eventPublisher.execute(LoginEventImpl.from(userInfo.id(), availablePartyId, command.userName())));
+      CompletableFuture.runAsync(()->eventPublisher.execute(LoginEvent.from(userInfo.id(), availablePartyId, command.userName())));
     }
     return PartyUserIdDto.from(availablePartyId, userInfo.id());
   }
