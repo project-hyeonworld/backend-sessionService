@@ -20,14 +20,17 @@ public interface UserClient {
     void patchLogin(@PathVariable(name ="userId") long userId);
 
     @PatchMapping("/{userId}/authentication/logout")
-    void patchLogout(@PathVariable(name ="userId") long userId);
+    UserRelationTypeInfo patchLogout(@PathVariable(name ="userId") long userId);
 
     @GetMapping("/relation-type")
     UserRelationTypeInfo getUserRelationTypeByName(@RequestParam(name = "name") String userName);
 
+    @GetMapping("/{userId}/relation-type")
+    int getRelationTypeById(@PathVariable(name = "userId") long userId);
+
     @GetMapping("/")
     boolean validateById(@PathVariable("id") long userId);
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{userId}/name")
     String getUserNameById(@PathVariable(name ="userId") long userId);
 }
