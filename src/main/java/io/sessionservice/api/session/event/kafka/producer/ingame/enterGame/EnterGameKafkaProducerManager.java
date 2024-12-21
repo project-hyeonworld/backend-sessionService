@@ -1,7 +1,10 @@
 package io.sessionservice.api.session.event.kafka.producer.ingame.enterGame;
 
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerFactory;
+
+import io.sessionservice.api.session.event.kafka.producer.ingame.enterGame.event.EnterGameEvent;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerManager;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducers;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,8 +14,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnterGameKafkaProducerManager extends GenericKafkaProducerManager<EnterGameEvent> {
 
+    private final GenericKafkaProducer<EnterGameEvent, ?, ?> producer;
+
     public EnterGameKafkaProducerManager(
-            GenericKafkaProducerFactory<EnterGameEvent> genericKafkaConsumerFactory) {
-        super(genericKafkaConsumerFactory);
+            GenericKafkaProducer<EnterGameEvent, ?, ?> enterGameKafkaProducer) {
+        producer = enterGameKafkaProducer;
+    }
+
+    @Override
+    public void send(EnterGameEvent event) {
+        producer.send(event);
     }
 }

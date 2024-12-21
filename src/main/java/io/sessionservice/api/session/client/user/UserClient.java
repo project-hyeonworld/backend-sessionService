@@ -16,6 +16,9 @@ public interface UserClient {
     @GetMapping("/authentication")
     UserRelationTypeInfo getAuthenticationByName(@RequestParam(name = "name") String userName);
 
+    @GetMapping("/{userId}/in-game")
+    UserNameRelationTypeInfo getUserNameRelationTypeById(@RequestParam(name = "userId") long userId);
+
     @PatchMapping("/{userId}/authentication/login")
     void patchLogin(@PathVariable(name ="userId") long userId);
 
