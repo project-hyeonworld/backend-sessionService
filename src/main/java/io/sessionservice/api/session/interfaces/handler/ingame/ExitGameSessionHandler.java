@@ -1,8 +1,9 @@
 package io.sessionservice.api.session.interfaces.handler.ingame;
 
 import io.sessionservice.api.session.event.kafka.producer.ingame.IngameEvent;
-import io.sessionservice.api.session.event.kafka.producer.ingame.exitGame.ExitGameEvent;
 import io.sessionservice.api.session.event.kafka.producer.ingame.exitGame.ExitGameKafkaSender;
+import io.sessionservice.api.session.event.kafka.producer.ingame.exitGame.ExitGameMessage;
+import io.sessionservice.api.session.event.kafka.producer.ingame.exitGame.event.ExitGameEvent;
 import io.sessionservice.common.event.GenericEventHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,12 +20,13 @@ public class ExitGameSessionHandler extends GenericEventHandler<ExitGameEvent, I
 
     @Override
     public Class<ExitGameEvent> getEventType() {
-        return null;
+        return ExitGameEvent.class;
     }
 
     @Override
     public void handle(IngameEvent event) {
-        kafkaSender.execute((ExitGameEvent) event);
+        kafkaSender.execute(ExitGameMessage.from((ExitGameEvent)event));
     }
+
 
 }

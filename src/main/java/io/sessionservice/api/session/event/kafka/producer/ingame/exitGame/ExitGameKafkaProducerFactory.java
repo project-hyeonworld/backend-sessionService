@@ -1,7 +1,8 @@
 package io.sessionservice.api.session.event.kafka.producer.ingame.exitGame;
 
+import io.sessionservice.api.session.event.kafka.producer.ingame.exitGame.event.ExitGameEvent;
 import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerFactory;
-import io.sessionservice.common.event.kafka.producer.GenericKafkaProducerStrategy;
+import io.sessionservice.common.event.kafka.producer.GenericKafkaProducer;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class ExitGameKafkaProducerFactory extends GenericKafkaProducerFactory<ExitGameEvent> {
 
     public ExitGameKafkaProducerFactory(
-            List<GenericKafkaProducerStrategy<? extends ExitGameEvent, ?, ?>> kafkaConsumerStrategies) {
+            List<GenericKafkaProducer<? extends ExitGameEvent, ?, ?>> kafkaConsumerStrategies) {
         super(kafkaConsumerStrategies);
     }
 }
