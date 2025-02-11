@@ -9,4 +9,9 @@ public record GameOutSessionEvent(int relationType, long userId, String userName
     public static GameOutSessionEvent from(int relationType, Long userId, String userName) {
         return new GameOutSessionEvent(relationType, userId, userName);
     }
+
+    @Override
+    public Class<? extends SessionEvent> getEventClass() {
+        return GameOutSessionEvent.class;
+    }
 }

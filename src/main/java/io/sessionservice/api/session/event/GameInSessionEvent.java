@@ -9,4 +9,9 @@ public record GameInSessionEvent(int relationType, long userId, String userName)
     public static GameInSessionEvent from(int relationType, Long userId, String userName) {
         return new GameInSessionEvent(relationType, userId, userName);
     }
+
+    @Override
+    public Class<? extends SessionEvent> getEventClass() {
+        return GameInSessionEvent.class;
+    }
 }
