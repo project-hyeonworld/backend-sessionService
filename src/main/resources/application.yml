@@ -1,11 +1,15 @@
 server:
-  port: 10002
+  port: {APPLICATION_PORT}
 
 spring:
+  cloud:
+    openfeign:
+      httpclient:
+        hc5:
+          enabled: true
   application:
     name: session-service
   profiles:
     active: local
   config:
-    import: configserver:http://localhost:8888
-
+    import: configserver:http://{MY_BACKEND_CONFIG_SERVER_IP}:{MY_BACKEND_CONFIG_SERVER_PORT}
