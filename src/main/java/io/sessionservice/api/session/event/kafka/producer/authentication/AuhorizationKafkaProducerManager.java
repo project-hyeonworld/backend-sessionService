@@ -12,7 +12,7 @@ public class AuhorizationKafkaProducerManager extends GenericKafkaProducerManage
 
     public AuhorizationKafkaProducerManager(
             GenericKafkaProducers<AuthenticationEvent> genericKafkaProducers) {
-        super(genericKafkaProducers);
+        //super(genericKafkaProducers);
     }
 
     @Override
