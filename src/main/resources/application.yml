@@ -10,6 +10,6 @@ spring:
   application:
     name: session-service
   profiles:
-    active: local
+    active: {SPRING_PROFILE_ACTIVE}
   config:
     import: configserver:http://{MY_BACKEND_CONFIG_SERVER_IP}:{MY_BACKEND_CONFIG_SERVER_PORT}
