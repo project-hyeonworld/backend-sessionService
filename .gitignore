@@ -1,9 +1,9 @@
 HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+spring/.gradle
+spring/build/
+!spring/gradle/wrapper/gradle-wrapper.jar
+!spring/**/src/main/**/build/
+!spring/**/src/test/**/build/
 
 ### STS ###
 .apt_generated
@@ -23,8 +23,8 @@ bin/
 *.iml
 *.ipr
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+!spring/**/src/main/**/out/
+!spring/**/src/test/**/out/
 
 ### NetBeans ###
 /nbproject/private/
