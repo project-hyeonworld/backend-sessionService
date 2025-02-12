@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+    spring:
+        build:
+            context: ./spring
+            dockerfile: Dockerfile
+        container_name: {SERVICES_SPRING_CONTAINER_NAME}
+        restart: always
+        ports:
+            - {APPLICATION_PORT}:{APPLICATION_PORT}
+    mysql:
+        build:
+            context: ./database
+            dockerfile: Dockerfile
+        container_name: session_mysql
+        restart: always
+        ports:
+            - {MYSQL_PORT}:3306
+        volumes:
+            - ./mysql_data:/var/lib/mysql
