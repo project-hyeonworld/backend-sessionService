@@ -10,7 +10,7 @@ services:
             - {APPLICATION_PORT}:{APPLICATION_PORT}
     mysql:
         build:
-            context: ./database
+            context: ./mysql
             dockerfile: Dockerfile
         container_name: session_mysql
         restart: always
