@@ -4,7 +4,7 @@ services:
         build:
             context: ./spring
             dockerfile: Dockerfile
-        container_name: {SERVICES_SPRING_CONTAINER_NAME}
+        image: {SERVICES_SPRING_IMAGE_NAME}
         restart: always
         ports:
             - {APPLICATION_PORT}:{APPLICATION_PORT}
@@ -12,7 +12,6 @@ services:
         build:
             context: ./mysql
             dockerfile: Dockerfile
-        container_name: session_mysql
         restart: always
         ports:
             - {MYSQL_PORT}:3306
